@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Chiquitos Técnicos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚙️ <span>Chiquitos</span>Técnicos</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="perfiles.html">Directorio</a></li>
+                    <li><a href="registro.html">Ofrecer Servicio</a></li>
+                    <li><a href="admin.html" class="active">Control Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ACCESO LOGIN ADMIN -->
+    <div id="login-overlay" style="display: flex; justify-content: center; align-items: center; padding: 4rem 1rem;">
+        <div style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 380px;">
+            <h2 style="text-align: center; margin-bottom: 0.5rem; color: #0F172A;">Acceso Restringido</h2>
+            <p style="text-align: center; color: #64748B; font-size: 0.9rem; margin-bottom: 1.5rem;">Ingresa tus credenciales de Administrador</p>
+            
+            <form onsubmit="iniciarSesionAdmin(event)">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.4rem; color: #334155;">Usuario:</label>
+                    <input type="text" id="admin_user" required style="width: 100%; padding: 0.6rem; border: 1px solid #CBD5E1; border-radius: 6px;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.4rem; color: #334155;">Contraseña:</label>
+                    <input type="password" id="admin_pass" required style="width: 100%; padding: 0.6rem; border: 1px solid #CBD5E1; border-radius: 6px;">
+                </div>
+                <button type="submit" style="width: 100%; padding: 0.8rem; background: #0284C7; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Ingresar al Panel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CONTENIDO ADMINISTRADOR (SE MUESTRA TRAS LOGUEARSE) -->
+    <main class="container" id="admin-content" style="display: none; padding: 2rem 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <h2>Panel de Control y Gestión de Hojas de Vida</h2>
+                <p style="color: #64748B;">Aprueba, pausa o elimina el registro de los trabajadores en la plataforma.</p>
+            </div>
+            <button onclick="cerrarSesionAdmin()" style="background: #64748B; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">Cerrar Sesión</button>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-top: 1.5rem; overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #E2E8F0; background: #F8FAFC;">
+                        <th style="padding: 12px; text-align: center;">Foto</th>
+                        <th style="padding: 12px;">Nombre</th>
+                        <th style="padding: 12px;">Especialidad</th>
+                        <th style="padding: 12px;">Estado</th>
+                        <th style="padding: 12px; text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body">
+                    <!-- Filas cargadas dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            verificarSesionAdmin();
+        });
+    </script>
+</body>
+</html>
